@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_dialog_background_image"
+        android:orientation="vertical"
+        android:padding="32dp">
+
+    <ImageView
+        android:id="@+id/cancelBtn"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="start"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/cancel_btn_black_image" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/temp_meow"
+                app:tint="@color/text3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="개념서의 이름과 표지를 정해주세요!"
+                android:textColor="@color/text3"
+                android:textSize="26sp" />
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/popup_input_box"
+            android:hint="개념책 이름"
+            android:paddingHorizontal="20dp"
+            android:textColorHint="@color/text_placeholder"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/selectBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/popup_bottom_btn_blue"
+            android:text="완료" />
+
+
+    </LinearLayout>

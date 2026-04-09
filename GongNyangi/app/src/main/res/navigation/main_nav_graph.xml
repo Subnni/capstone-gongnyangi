@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/HomeFragment"> <!-- 앱 실행 시 첫 화면 -->
+
+    <!--홈-->
+    <fragment
+        android:id="@+id/HomeFragment"
+        android:name="com.example.gongnyangi.ui.HomeFragment">
+        <action
+            android:id="@+id/gotoMyPage"
+            app:destination="@id/MyPageFragment" />
+    </fragment>
+
+    <!--홈>내페이지-->
+    <fragment
+        android:id="@+id/MyPageFragment"
+        android:name="com.example.gongnyangi.ui.MyPageFragment">
+        <action
+            android:id="@+id/gotoHome"
+            app:destination="@id/HomeFragment" />
+        <action
+            android:id="@+id/gotoMyPageModify"
+            app:destination="@id/MyPageModifyFragment" />
+    </fragment>
+
+    <!--홈>내페이지>수정-->
+    <fragment
+        android:id="@+id/MyPageModifyFragment"
+        android:name="com.example.gongnyangi.ui.MyPageModifyFragment">
+        <action
+            android:id="@+id/gotoMyPageDeleteAccount"
+            app:destination="@id/MyPageDeleteAccountFragment" />
+        <action
+            android:id="@+id/gotoMyPage"
+            app:destination="@id/MyPageFragment" />
+    </fragment>
+
+    <!--홈>내페이지>수정>계정삭제-->
+    <fragment
+        android:id="@+id/MyPageDeleteAccountFragment"
+        android:name="com.example.gongnyangi.ui.MyPageDeleteAccountFragment" >
+        <action
+            android:id="@+id/gotoMyPageModify"
+            app:destination="@id/MyPageModifyFragment" />
+    </fragment>
+
+
+</navigation>

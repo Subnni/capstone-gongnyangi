@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="background">#F9F8F9</color>
+    <color name="main1">#F9F9FA</color>
+    <color name="main2">#F3F4F8</color>
+
+    <color name="text1">#8096AE</color>
+    <color name="text2">#6C7D8F</color>
+    <color name="text3">#3E4750</color>
+    <color name="text5">#493D3A</color>
+    <color name="text4">#F28284</color>
+
+    <color name="pointcolor">#468EF1</color>
+
+    <color name="text_placeholder">#B3546679</color>
+
+</resources>
