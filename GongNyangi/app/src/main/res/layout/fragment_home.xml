@@ -101,356 +101,172 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!--본문-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:layout_constraintDimensionRatio="1366:1024">
 
-        <LinearLayout
-            android:id="@+id/subContent2"
+    <!--겹침 영역-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/noRoadMapLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_weight="1"
+            app:layout_constraintDimensionRatio="1366:1024">
+
+            <ImageView
+                android:id="@+id/ghostImageView"
+                android:layout_width="184dp"
+                android:layout_height="215dp"
+                android:layout_marginTop="200dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/ghost"
+                android:backgroundTint="@color/loco"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/ghostTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="아직 학습 자료가 저장되지 않았어요!"
+                android:textColor="@color/loco"
+
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ghostImageView" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--본문-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/yesRoadMapLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:layout_constraintDimensionRatio="1366:1024">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/subContent2"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="20dp"
-                android:orientation="vertical"
-                android:paddingTop="30dp"
-                android:paddingRight="30dp"
-                android:paddingBottom="30dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:text="내 책장"
-                        android:textColor="@color/text3"
-                        android:textSize="34sp" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/home_dropdown_image" />
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
 
-                </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginEnd="20dp"
                     android:orientation="vertical"
-                    android:background="@drawable/book_list_image_default"
-                    android:backgroundTint="@android:color/transparent"
-                    >
+                    android:paddingTop="30dp"
+                    android:paddingRight="30dp"
+                    android:paddingBottom="30dp">
 
-                    <ScrollView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scrollbars="none">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="내 책장"
+                            android:textColor="@color/text3"
+                            android:textSize="34sp" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:gravity="center_vertical"
+                            android:paddingHorizontal="20dp"
+                            android:background="@drawable/home_dropdown_image">
 
-                            <LinearLayout
+                            <TextView
                                 android:layout_width="wrap_content"
-                                android:layout_height="150dp"
-                                android:layout_marginBottom="10dp"
-                                android:background="@drawable/book_list_image_activate"
-                                android:gravity="center_vertical"
-                                android:padding="20dp">
-
-                                <LinearLayout
-                                    android:layout_width="140dp"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:background="@drawable/book_image" >
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:paddingLeft="10dp"
-                                        android:paddingTop="10dp"
-                                        android:src="@drawable/ghost"/>
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="end"
-                                    android:paddingBottom="10dp"
-                                    android:paddingRight="10dp"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="⋮"
-                                        android:textColor="@color/text3"
-                                        android:layout_weight="1"
-                                        android:textSize="28sp"
-                                        />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:maxLines="1"
-                                        android:ellipsize="end"
-                                        android:paddingLeft="20dp"
-                                        android:text="book1boookkkkkkkkkkkkkkkkkkkkkkkk"
-                                        android:textColor="@color/text3"
-                                        android:textSize="25sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="만든 날짜 : 2026.01.23."
-                                        android:textColor="@color/text2"
-                                        android:textSize="18sp" />
-                                </LinearLayout>
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="150dp"
-                                android:layout_marginBottom="10dp"
-                                android:background="@drawable/book_list_image_default"
-                                android:gravity="center_vertical"
-                                android:padding="20dp">
-
-                                <LinearLayout
-                                    android:layout_width="140dp"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:background="@drawable/book_image" >
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:paddingLeft="10dp"
-                                        android:paddingTop="10dp"
-                                        android:src="@drawable/ghost"/>
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="end"
-                                    android:paddingBottom="10dp"
-                                    android:paddingRight="10dp"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="⋮"
-                                        android:textColor="@color/text3"
-                                        android:layout_weight="1"
-                                        android:textSize="28sp"
-                                        />
-
-                                    <TextView
-                                        android:id="@+id/testText"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="테스트용 텍스트뷰"
-                                        android:textColor="@color/text3"
-                                        android:textSize="25sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="만든 날짜 : 2026.01.23."
-                                        android:textColor="@color/text2"
-                                        android:textSize="18sp" />
-                                </LinearLayout>
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="150dp"
-                                android:layout_marginBottom="10dp"
-                                android:background="@drawable/book_list_image_activate"
-                                android:gravity="center_vertical"
-                                android:padding="20dp">
-
-                                <LinearLayout
-                                    android:layout_width="140dp"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:background="@drawable/book_image" >
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:paddingLeft="10dp"
-                                        android:paddingTop="10dp"
-                                        android:src="@drawable/ghost"/>
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="end"
-                                    android:paddingBottom="10dp"
-                                    android:paddingRight="10dp"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="⋮"
-                                        android:textColor="@color/text3"
-                                        android:layout_weight="1"
-                                        android:textSize="28sp"
-                                        />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="book1"
-                                        android:textColor="@color/text3"
-                                        android:textSize="25sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="만든 날짜 : 2026.01.23."
-                                        android:textColor="@color/text2"
-                                        android:textSize="18sp" />
-                                </LinearLayout>
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="150dp"
-                                android:layout_marginBottom="10dp"
-                                android:background="@drawable/book_list_image_default"
-                                android:gravity="center_vertical"
-                                android:padding="20dp">
-
-                                <LinearLayout
-                                    android:layout_width="140dp"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:background="@drawable/book_image" >
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:paddingLeft="10dp"
-                                        android:paddingTop="10dp"
-                                        android:src="@drawable/ghost"/>
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="end"
-                                    android:paddingBottom="10dp"
-                                    android:paddingRight="10dp"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="⋮"
-                                        android:textColor="@color/text3"
-                                        android:layout_weight="1"
-                                        android:textSize="28sp"
-                                        />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:maxLines="1"
-                                        android:ellipsize="end"
-                                        android:paddingLeft="20dp"
-                                        android:text="테스트용 텍스트뷰테스트용 텍스트뷰테스트용 텍스트뷰테스트용 텍스트뷰테스트용 텍스트뷰테스트용 텍스트뷰테스트용 텍스트뷰"
-                                        android:textColor="@color/text3"
-                                        android:textSize="25sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="만든 날짜 : 2026.01.23."
-                                        android:textColor="@color/text2"
-                                        android:textSize="18sp" />
-                                </LinearLayout>
-                            </LinearLayout>
-
+                                android:layout_height="wrap_content"
+                                android:text="전체"
+                                android:layout_weight="1"
+                                android:textSize="17sp"
+                                android:fontFamily="@font/freesentation_bold"
+                                android:textColor="@color/text2"
+                                />
+                            <ImageView
+                                android:layout_width="15sp"
+                                android:layout_height="15sp"
+                                android:background = "@drawable/temp_meow"/>
 
                         </LinearLayout>
 
 
-                    </ScrollView>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="@drawable/book_list_image_default"
+                        android:backgroundTint="@android:color/transparent"
+                        >
+
+                        <ScrollView
+                            android:id="@+id/bookListScrollView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scrollbars="none">
+
+                            <LinearLayout
+                                android:id="@+id/bookListLayout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                            </LinearLayout>
+
+
+                        </ScrollView>
+
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/roadmapBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/home_roadmap_box_image"
+                    android:orientation="vertical"
+                    android:padding="30dp">
+
+
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:src="@drawable/temp_image" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@drawable/home_roadmap_box_image"
-                android:orientation="vertical"
-                android:padding="30dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top|end"
-                    android:background="@drawable/home_roadmap_header_image"
-                    android:padding="8dp"
-                    android:text="book1"
-                    android:textColor="#5C9BD1"
-                    android:textStyle="bold" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+    </FrameLayout>
 
-                    android:src="@drawable/coin_icon" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

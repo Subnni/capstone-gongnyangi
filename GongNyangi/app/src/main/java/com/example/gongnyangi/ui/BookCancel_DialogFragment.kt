@@ -1,5 +1,6 @@
 package com.example.gongnyangi.ui
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -43,6 +44,13 @@ class BookCancel_DialogFragment : DialogFragment() {
             dismiss()
         }
 
+    }
+    //다이얼로그 생성 시 시스템 세팅 변경
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        // 다이얼로그가 생성될 때 배경을 투명하게 설정
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        return dialog
     }
 
 }

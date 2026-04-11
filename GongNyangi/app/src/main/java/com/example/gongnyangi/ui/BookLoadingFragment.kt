@@ -46,7 +46,11 @@ class BookLoadingFragment : Fragment() {
             }
             dialog.onDismissListener = {
                 isPopupOpen = false
-                if (isAnalysisFinished) navigateToNextScreen()
+                if (isAnalysisFinished) {
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        navigateToNextScreen()
+                    }, 3000)
+                }
             }
             dialog.show(parentFragmentManager, "SaveDialog")
         }

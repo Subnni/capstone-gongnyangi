@@ -32,7 +32,7 @@ class BookCompleteFragment : Fragment() {
 
         textbookSaveButton.setOnClickListener {
 
-            //개념서 이름, 사진 지정하는 바텀시트
+            //이름 지정하는 바텀시트
             val bottomSheet_setting = BottomSheetDialogFragment_BookSetting()
 
             bottomSheet_setting.onCompleteSelectListener = {
