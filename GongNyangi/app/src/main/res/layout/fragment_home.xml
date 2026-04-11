@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F5F7FA"
-    android:padding="12dp">
+    android:paddingHorizontal="50dp"
+    android:paddingVertical="30dp"
+    android:background="@color/main2">
 
+    <!--헤더-->
     <LinearLayout
+        android:id="@+id/subContent1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:src="@drawable/title"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:id="@+id/testText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="API 테스트용 텍스트뷰"/>
+            android:layout_alignParentStart="true"
+            android:src="@drawable/home_header" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -34,140 +38,420 @@
 
             <ImageView
                 android:id="@+id/gotoCreateBook"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/coin_icon" />
-            <ImageView
-                android:id="@+id/gotoMyPage"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/coin_icon" />
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/coin_icon" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/home_btn_camera_image" />
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/coin_icon" />
+            <LinearLayout
+                android:id="@+id/gotoMyPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:background="@drawable/home_btn_mypage_image" >
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:backgroundTint="@color/text3"
+                    android:background="@drawable/temp_meow"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="김어쩌구쩌구"
+                    android:textColor="@color/text3"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:background="@drawable/home_btn_closet_image" >
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/my_page_coin_image"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1,320"
+                    android:textColor="@color/text3"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/home_btn_setting_image">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:backgroundTint="@color/text2"
+                    android:background="@drawable/setting_icon"/>
+            </LinearLayout>
 
 
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <!--본문-->
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layout_constraintDimensionRatio="1366:1024">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:id="@+id/subContent2"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginEnd="16dp">
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="내 책장"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="#333333"
-                android:layout_marginBottom="12dp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bookcase_box_image"
-                android:padding="12dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/coin_icon" />
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical"
+                android:paddingTop="30dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="30dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="end">
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="book1"
-                        android:textStyle="bold"
-                        android:textSize="18sp"/>
-                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="내 책장"
+                        android:textColor="@color/text3"
+                        android:textSize="34sp" />
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="만든 날짜 : 2026.01.23."
-                        android:textSize="12sp"/>
+                        android:background="@drawable/home_dropdown_image" />
+
+
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@drawable/book_list_image_default"
+                    android:backgroundTint="@android:color/transparent"
+                    >
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollbars="none">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="150dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/book_list_image_activate"
+                                android:gravity="center_vertical"
+                                android:padding="20dp">
+
+                                <LinearLayout
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:background="@drawable/book_image" >
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="10dp"
+                                        android:paddingTop="10dp"
+                                        android:src="@drawable/ghost"/>
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="end"
+                                    android:paddingBottom="10dp"
+                                    android:paddingRight="10dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="⋮"
+                                        android:textColor="@color/text3"
+                                        android:layout_weight="1"
+                                        android:textSize="28sp"
+                                        />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:maxLines="1"
+                                        android:ellipsize="end"
+                                        android:paddingLeft="20dp"
+                                        android:text="book1boookkkkkkkkkkkkkkkkkkkkkkkk"
+                                        android:textColor="@color/text3"
+                                        android:textSize="25sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="만든 날짜 : 2026.01.23."
+                                        android:textColor="@color/text2"
+                                        android:textSize="18sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="150dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/book_list_image_default"
+                                android:gravity="center_vertical"
+                                android:padding="20dp">
+
+                                <LinearLayout
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:background="@drawable/book_image" >
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="10dp"
+                                        android:paddingTop="10dp"
+                                        android:src="@drawable/ghost"/>
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="end"
+                                    android:paddingBottom="10dp"
+                                    android:paddingRight="10dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="⋮"
+                                        android:textColor="@color/text3"
+                                        android:layout_weight="1"
+                                        android:textSize="28sp"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/testText"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="테스트용 텍스트뷰"
+                                        android:textColor="@color/text3"
+                                        android:textSize="25sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="만든 날짜 : 2026.01.23."
+                                        android:textColor="@color/text2"
+                                        android:textSize="18sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="150dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/book_list_image_activate"
+                                android:gravity="center_vertical"
+                                android:padding="20dp">
+
+                                <LinearLayout
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:background="@drawable/book_image" >
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="10dp"
+                                        android:paddingTop="10dp"
+                                        android:src="@drawable/ghost"/>
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="end"
+                                    android:paddingBottom="10dp"
+                                    android:paddingRight="10dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="⋮"
+                                        android:textColor="@color/text3"
+                                        android:layout_weight="1"
+                                        android:textSize="28sp"
+                                        />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="book1"
+                                        android:textColor="@color/text3"
+                                        android:textSize="25sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="만든 날짜 : 2026.01.23."
+                                        android:textColor="@color/text2"
+                                        android:textSize="18sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="150dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/book_list_image_default"
+                                android:gravity="center_vertical"
+                                android:padding="20dp">
+
+                                <LinearLayout
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:background="@drawable/book_image" >
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="10dp"
+                                        android:paddingTop="10dp"
+                                        android:src="@drawable/ghost"/>
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="end"
+                                    android:paddingBottom="10dp"
+                                    android:paddingRight="10dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="⋮"
+                                        android:textColor="@color/text3"
+                                        android:layout_weight="1"
+                                        android:textSize="28sp"
+                                        />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:maxLines="1"
+                                        android:ellipsize="end"
+                                        android:paddingLeft="20dp"
+                                        android:text="테스트용 텍스트뷰테스트용 텍스트뷰테스트용 텍스트뷰테스트용 텍스트뷰테스트용 텍스트뷰테스트용 텍스트뷰테스트용 텍스트뷰"
+                                        android:textColor="@color/text3"
+                                        android:textSize="25sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="만든 날짜 : 2026.01.23."
+                                        android:textColor="@color/text2"
+                                        android:textSize="18sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </ScrollView>
+
+
+                </LinearLayout>
+
+
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bookcase_box_image"
-                android:padding="12dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="center_vertical">
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/home_roadmap_box_image"
+                android:orientation="vertical"
+                android:padding="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|end"
+                    android:background="@drawable/home_roadmap_header_image"
+                    android:padding="8dp"
+                    android:text="book1"
+                    android:textColor="#5C9BD1"
+                    android:textStyle="bold" />
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
                     android:src="@drawable/coin_icon" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="end">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="book2"
-                        android:textStyle="bold"
-                        android:textSize="18sp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="만든 날짜 : 2026.01.23."
-                        android:textSize="12sp"/>
-                </LinearLayout>
             </LinearLayout>
+
         </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.3"
-            android:background="@drawable/bookcase_box_image"
-            android:padding="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|end"
-                android:text="book1"
-                android:padding="8dp"
-                android:background="@drawable/bookcase_box_image"
-                android:textStyle="bold"
-                android:textColor="#5C9BD1"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="30dp"
-                android:src="@drawable/coin_icon" />
 
-        </FrameLayout>
-    </LinearLayout>
+
 </LinearLayout>

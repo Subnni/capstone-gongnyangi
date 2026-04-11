@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.example.gongnyangi.R
@@ -19,7 +20,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var testText : TextView
     private lateinit var gotoCreateBook : ImageView
-    private lateinit var gotoMyPage : ImageView
+    private lateinit var gotoMyPage : LinearLayout
+
 
     //레이아웃 생성
     override fun onCreateView(
