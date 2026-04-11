@@ -12,6 +12,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // 26.04.11김서진 추가_프레그먼트연결
+        supportFragmentManager.beginTransaction()
+            .replace(android.R.id.content, HomeFragment())
+            .commit()
+
         //intent 안 데이터 따라 프래그먼트 이동
         //val target = intent.getStringExtra("targetFragment")
         //when (target) {
