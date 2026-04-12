@@ -2,6 +2,7 @@ package com.example.gongnyangi.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.navigation.fragment.findNavController
 import com.example.gongnyangi.R
@@ -22,7 +24,8 @@ class HomeFragment : Fragment() {
     //UI 담을 변수
     //private lateinit var testText : TextView
     private lateinit var gotoCreateBook : ImageView
-    private lateinit var gotoMyPage : LinearLayout
+    private lateinit var gotoMyPageLL : LinearLayout
+    private lateinit var gotoSetting : LinearLayout
     private lateinit var bookListLayout : LinearLayout
     private lateinit var ghostTextView : TextView
     private lateinit var ghostImageView : ImageView
@@ -45,12 +48,23 @@ class HomeFragment : Fragment() {
 
         //UI 연결
         gotoCreateBook = view.findViewById(R.id.gotoCreateBook)
-        gotoMyPage = view.findViewById(R.id.gotoMyPage)
+        gotoMyPageLL = view.findViewById(R.id.gotoMyPageLL)
+        gotoSetting = view.findViewById(R.id.gotoSetting)
         //testText = view.findViewById(R.id.testText)
         bookListLayout = view.findViewById(R.id.bookListLayout)
         ghostImageView = view.findViewById(R.id.ghostImageView)
         ghostTextView = view.findViewById(R.id.ghostTextView)
         roadmapBox = view.findViewById(R.id.roadmapBox)
+
+        //페이지 이동 버튼 리스너 연결
+        gotoMyPageLL.setOnClickListener {
+            findNavController().navigate(R.id.homeToMyPage)
+        }
+        gotoCreateBook.setOnClickListener {
+            val intent = Intent(requireContext(), CreateBookActivity::class.java)
+            startActivity(intent)
+        }
+
 
         //DB값 담을 변수
         //임의 생성
@@ -149,19 +163,6 @@ class HomeFragment : Fragment() {
         }
         else{
             roadmapBox.setVisibility(View.INVISIBLE)
-        }
-
-
-
-        //페이지 이동 버튼 리스너 연결
-        val currentFragment = parentFragmentManager.findFragmentById(R.id.fragmentContainer)
-        gotoMyPage.setOnClickListener {
-            findNavController().navigate(R.id.MyPageFragment)
-
-        }
-        gotoCreateBook.setOnClickListener {
-            val intent = Intent(requireContext(), CreateBookActivity::class.java)
-            startActivity(intent)
         }
 
     }

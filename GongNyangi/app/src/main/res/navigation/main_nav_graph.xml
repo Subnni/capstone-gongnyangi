@@ -8,7 +8,7 @@
         android:id="@+id/HomeFragment"
         android:name="com.example.gongnyangi.ui.HomeFragment">
         <action
-            android:id="@+id/gotoMyPage"
+            android:id="@+id/homeToMyPage"
             app:destination="@id/MyPageFragment" />
     </fragment>
 
@@ -32,7 +32,7 @@
             android:id="@+id/gotoMyPageDeleteAccount"
             app:destination="@id/MyPageDeleteAccountFragment" />
         <action
-            android:id="@+id/gotoMyPage"
+            android:id="@+id/modifyToMyPage"
             app:destination="@id/MyPageFragment" />
     </fragment>
 
