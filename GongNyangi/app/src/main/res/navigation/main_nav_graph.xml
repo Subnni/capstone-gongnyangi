@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/HomeFragment"> <!-- 앱 실행 시 첫 화면 -->
+
+    <!--로그인-->
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:name="com.example.gongnyangi.ui.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/gotoSignUp"
+            app:destination="@id/SignUpFragment" />
+    </fragment>
+
+    <!--회원가입-->
+    <fragment
+        android:id="@+id/SignUpFragment"
+        android:name="com.example.gongnyangi.ui.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/gotoLogin"
+            app:destination="@id/LoginFragment" />
+        <action
+            android:id="@+id/gotoWelcome"
+            app:destination="@id/HomeFragment" />
+    </fragment>
 
     <!--홈-->
     <fragment
