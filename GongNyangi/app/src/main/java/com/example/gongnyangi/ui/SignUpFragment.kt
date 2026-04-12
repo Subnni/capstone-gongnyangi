@@ -48,11 +48,11 @@ class SignUpFragment : Fragment() {
         spinnerGrade = view.findViewById(R.id.spinnerGrade)
         editPhone = view.findViewById(R.id.editPhone)
 
-//        // 학년 스피너 어댑터 설정
-//        val grades = arrayOf("1학년", "2학년", "3학년", "4학년", "5학년","6학년")
-//        val g_adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, grades)
-//        g_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//        spinnerGrade.adapter = g_adapter
+        // 학년 스피너 어댑터 설정
+        val grades = arrayOf("1학년", "2학년", "3학년", "4학년", "5학년","6학년")
+        val g_adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, grades)
+        g_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerGrade.adapter = g_adapter
 
         // 뒤로가기(로그인 화면으로 이동) 버튼
         gotoLogin.setOnClickListener {
