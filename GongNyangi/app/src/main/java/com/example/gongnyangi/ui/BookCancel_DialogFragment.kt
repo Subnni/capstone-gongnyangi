@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.example.gongnyangi.R
 
@@ -19,7 +20,8 @@ class BookCancel_DialogFragment : DialogFragment() {
     var onDismissListener: (() -> Unit)? = null
     //ui
     private lateinit var cancelCancel : ImageView
-    private lateinit var confirmCancel : LinearLayout
+    private lateinit var cancelCancel2 : TextView
+    private lateinit var confirmCancel : TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,9 +35,14 @@ class BookCancel_DialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         cancelCancel = view.findViewById(R.id.cancelCancel)
+        cancelCancel2 = view.findViewById(R.id.cancelCancel2)
         confirmCancel = view.findViewById(R.id.confirmCancel)
 
         cancelCancel.setOnClickListener {
+            onDismissListener?.invoke()
+            dismiss()
+        }
+        cancelCancel2.setOnClickListener {
             onDismissListener?.invoke()
             dismiss()
         }

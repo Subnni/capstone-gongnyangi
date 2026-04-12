@@ -44,25 +44,26 @@
                 android:src="@drawable/home_btn_camera_image" />
 
             <LinearLayout
-                android:id="@+id/gotoMyPage"
+                android:id="@+id/gotoMyPageLL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:gravity="center"
-                android:background="@drawable/home_btn_mypage_image" >
+                android:background="@drawable/home_btn_mypage_image"
+                android:gravity="center">
 
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginRight="10dp"
-                    android:backgroundTint="@color/text3"
-                    android:background="@drawable/temp_meow"/>
+                    android:background="@drawable/temp_meow"
+                    android:backgroundTint="@color/text3" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="김어쩌구쩌구"
                     android:textColor="@color/text3"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -86,9 +87,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/gotoSetting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:clickable="true"
                 android:background="@drawable/home_btn_setting_image">
                 <ImageView
                     android:layout_width="25dp"

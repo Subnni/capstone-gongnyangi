@@ -34,7 +34,7 @@ class MyPageModifyFragment : Fragment() {
         gotoMyPageDeleteAccountTextView = view.findViewById(R.id.gotoMyPageDeleteAccountTextView)
 
         gotoMyPageImageView.setOnClickListener{
-            findNavController().navigate(R.id.gotoMyPage)
+            findNavController().navigate(R.id.modifyToMyPage)
         }
         gotoMyPageDeleteAccountTextView.setOnClickListener{
             findNavController().navigate(R.id.gotoMyPageDeleteAccount)
