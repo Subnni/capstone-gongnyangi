@@ -52,6 +52,7 @@
             android:padding="12dp">
 
             <EditText
+                android:id="@+id/editUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -77,6 +78,7 @@
             android:padding="12dp">
 
             <EditText
+                android:id="@+id/editPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -103,6 +105,7 @@
             android:padding="12dp">
 
             <EditText
+                android:id="@+id/editCatName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -127,6 +130,7 @@
             android:padding="12dp">
 
             <Spinner
+                android:id="@+id/spinnerGrade"
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:background="@null" />
@@ -157,6 +161,7 @@
                 android:layout_marginEnd="12dp">
 
                 <EditText
+                    android:id="@+id/editPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
