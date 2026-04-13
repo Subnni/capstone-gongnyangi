@@ -30,7 +30,7 @@
         android:name="com.example.gongnyangi.ui.MyPageModifyFragment">
         <action
             android:id="@+id/gotoMyPageDeleteAccount"
-            app:destination="@id/MyPageDeleteAccountFragment" />
+            app:destination="@id/MyPageQuitFragment" />
         <action
             android:id="@+id/modifyToMyPage"
             app:destination="@id/MyPageFragment" />
@@ -38,8 +38,8 @@
 
     <!--홈>내페이지>수정>계정삭제-->
     <fragment
-        android:id="@+id/MyPageDeleteAccountFragment"
-        android:name="com.example.gongnyangi.ui.MyPageDeleteAccountFragment" >
+        android:id="@+id/MyPageQuitFragment"
+        android:name="com.example.gongnyangi.ui.MyPageQuitFragment" >
         <action
             android:id="@+id/gotoMyPageModify"
             app:destination="@id/MyPageModifyFragment" />

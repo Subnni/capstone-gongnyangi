@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.gongnyangi.R
 
 
-class MyPageDeleteAccountFragment : Fragment() {
+class MyPageQuitFragment : Fragment() {
 
     private lateinit var gotoMyPageModifyImageView : ImageView
 
@@ -19,7 +19,7 @@ class MyPageDeleteAccountFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_page_delete_account, container, false)
+        return inflater.inflate(R.layout.fragment_my_page_quit, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
