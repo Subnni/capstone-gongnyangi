@@ -54,7 +54,8 @@ android:layout_height="match_parent">
                 android:layout_height="wrap_content"
                 android:background="@drawable/login_vertical_line_icon" />
 
-            <TextView
+            <EditText
+                android:id="@+id/PhoneLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="전화번호 "
