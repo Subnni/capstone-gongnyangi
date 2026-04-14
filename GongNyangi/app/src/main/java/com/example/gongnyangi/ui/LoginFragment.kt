@@ -1,7 +1,10 @@
 package com.example.gongnyangi.ui
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +13,8 @@ import android.widget.*
 import androidx.navigation.fragment.findNavController
 import com.example.gongnyangi.R
 import com.example.gongnyangi.network.RetrofitClient  // 이 경로가 맞는지 확인!
-import com.example.gongnyangi.network.LoginRequest
-import com.example.gongnyangi.network.LoginResponse
+import com.example.gongnyangi.network.apidata.LoginRequest
+import com.example.gongnyangi.network.apidata.LoginResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -54,20 +57,41 @@ class LoginFragment : Fragment() {
         }
     }
 
+    //API 호출 테스트
+    //lifecycleScope.launch {
+    //    try {
+    //        val response = RetrofitInstance.api.predict(InputData("Hello 서버!"))
+    //        if (response.isSuccessful) {
+    //            val result = response.body()?.result
+    //            testText.text = result
+    //        } else {
+    //            testText.text = "서버 에러: ${response.code()}"
+    //        }
+    //    } catch (e: Exception) {
+    //        testText.text = "연결 실패: ${e.message}"
+    //    }
+    //}
+
+    //로그인 검사
     private fun checkLogin(phone: String) {
         val loginData = LoginRequest(phone)
 
         // 💡 RetrofitClient.service 호출
-        RetrofitClient.service.login(loginData).enqueue(object : Callback<LoginResponse> {
+        RetrofitClient.api.login(loginData).enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
                     val result = response.body()
 
                     if (result != null && result.success) {
-                        val userName = result.user_name ?: "사용자"
+                        val userName = result.userName ?: "사용자"
+                        val userId = result.userId
                         Toast.makeText(requireContext(), "${userName}님, 환영합니다!", Toast.LENGTH_SHORT).show()
 
+                        saveData(userId, userName)
+
                         val intent = Intent(requireContext(), MainActivity::class.java)
+                        intent.putExtra("user_id", userId)
+                        intent.putExtra("user_name", userName)
                         startActivity(intent)
                         activity?.finish()
                     } else {
@@ -83,5 +107,14 @@ class LoginFragment : Fragment() {
                 Toast.makeText(requireContext(), "서버 연결에 실패했습니다.", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    //사용자 정보 저장(userId)
+    private fun saveData(userId : Int, userName : String){
+        var sharedPref = requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+        var editor = sharedPref.edit()
+
+        editor.putInt("USER_ID", userId).apply()
+        editor.putString("USER_NAME", userName).apply()
     }
 }

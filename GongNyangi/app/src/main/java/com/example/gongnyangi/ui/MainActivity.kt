@@ -1,10 +1,8 @@
 package com.example.gongnyangi.ui
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.gongnyangi.R
-import com.example.gongnyangi.network.RetrofitInstance
 
 class MainActivity : AppCompatActivity() {
 

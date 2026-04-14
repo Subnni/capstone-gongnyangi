@@ -1,8 +1,8 @@
 package com.example.gongnyangi.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,14 +10,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.navigation.fragment.findNavController
 import com.example.gongnyangi.R
-import com.example.gongnyangi.network.RetrofitInstance
-import com.example.gongnyangi.network.apidata.InputData
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
@@ -30,6 +25,8 @@ class HomeFragment : Fragment() {
     private lateinit var ghostTextView : TextView
     private lateinit var ghostImageView : ImageView
     private lateinit var roadmapBox : LinearLayout
+    private lateinit var userNameTextView : TextView
+    private lateinit var userScoreTextView : TextView
 
     //레이아웃 생성
     override fun onCreateView(
@@ -55,6 +52,9 @@ class HomeFragment : Fragment() {
         ghostImageView = view.findViewById(R.id.ghostImageView)
         ghostTextView = view.findViewById(R.id.ghostTextView)
         roadmapBox = view.findViewById(R.id.roadmapBox)
+
+        //사용자 정보 받아와 화면에 뿌리기
+        loadData()
 
         //페이지 이동 버튼 리스너 연결
         gotoMyPageLL.setOnClickListener {
@@ -145,26 +145,23 @@ class HomeFragment : Fragment() {
                 }
                 bookListLayout.addView(roadmapItemView)
             }
-
-            //API 호출 테스트
-            //lifecycleScope.launch {
-            //    try {
-            //        val response = RetrofitInstance.api.predict(InputData("Hello 서버!"))
-            //        if (response.isSuccessful) {
-            //            val result = response.body()?.result
-            //            testText.text = result
-            //        } else {
-            //            testText.text = "서버 에러: ${response.code()}"
-            //        }
-            //    } catch (e: Exception) {
-            //        testText.text = "연결 실패: ${e.message}"
-            //    }
-            //}
         }
         else{
             roadmapBox.setVisibility(View.INVISIBLE)
         }
 
+    }
+
+    private fun loadData(){
+        var sharedPref = requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+        var userId = sharedPref.getInt("USER_ID", 0)
+        var userName = sharedPref.getString("USER_NAME", null)
+
+        if(userId !=0 && !(userName.isNullOrBlank())){
+            userNameTextView.setText(userName)
+            userScoreTextView.setText(userId)
+
+        }
     }
 
 }

@@ -31,7 +31,7 @@ class MyPageModifyFragment : Fragment() {
         StatusBarUtils.addStatusBarPadding(view)
 
         gotoMyPageImageView = view.findViewById(R.id.gotoMyPageImageView)
-        gotoMyPageDeleteAccountTextView = view.findViewById(R.id.gotoMyPageDeleteAccountTextView)
+        gotoMyPageDeleteAccountTextView = view.findViewById(R.id.gotoMyPageQuitTextView)
 
         gotoMyPageImageView.setOnClickListener{
             findNavController().navigate(R.id.modifyToMyPage)

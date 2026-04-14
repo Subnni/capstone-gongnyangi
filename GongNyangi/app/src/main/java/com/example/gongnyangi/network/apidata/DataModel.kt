@@ -4,11 +4,21 @@ import com.google.gson.annotations.SerializedName
 
 //회원가입 및 CAT 테스트
 
+
+
+// 4.(임시) [공통/회원가입] 서버에서 받을 응답
+data class ServerResponse(
+    val success: Boolean,
+    val message: String
+)
+
+
 data class SignUpRequest(
     @SerializedName("phone") val phone : String,
     @SerializedName("user_name") val userName : String,
     @SerializedName("school_level") val schoolLevel : String,
-    @SerializedName("grade_level") val gradeLevel : Int
+    @SerializedName("grade_level") val gradeLevel : String,
+    @SerializedName("user_score") val userScore : Int? = 0
 )
 
 data class CATResponse(
@@ -37,6 +47,9 @@ data class LoginRequest(
 )
 
 data class LoginResponse(
+    @SerializedName("success") val success : Boolean,
+    @SerializedName("message") val message : String,
+    @SerializedName("user_name") val userName : String? = null,
     @SerializedName("user_id") val userId : Int
 )
 

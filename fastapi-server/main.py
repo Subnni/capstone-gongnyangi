@@ -23,14 +23,14 @@ def get_db_connection():
 #{"message":"Hello"}라는 json이 반환되어 응답된다.  
 @app.get("/")
 def root():
-	return {"message":"Hello"}
+	return {"message":"락토핏"}
 
 
 #클라이언트에서 보내는 데이터 형식 정의
 #BaseModel: JSON을 Python 객체로 바꿔주는 역할 하는 클래스
 #클라이언트가 보내는 JSON에는 text라는 문자열 타입 키가 있어야함 
-class InputData(BaseModel):
-	text : str
+# class InputData(BaseModel):
+# 	text : str
 
 
 # #예시 모델
@@ -40,14 +40,20 @@ class InputData(BaseModel):
 
 # model = DummyModel()
 
-@app.post("/predict")
-def predict(data : InputData):
-	#모델 호출
-	result = model.predict(data.text)
-	return {"result": result}
+# @app.post("/predict")
+# def predict(data : InputData):
+# 	#모델 호출
+# 	result = model.predict(data.text)
+# 	return {"result": result}
 
 # 1. 안드로이드에서 보낼 데이터 구조 정의 (Pydantic 모델)
-class UserRequest(BaseModel):
+
+
+#################################################################
+
+
+### 회원가입 
+class SignUpRequest(BaseModel):
     user_name: str
     phone: str
     school_level: str
@@ -56,7 +62,7 @@ class UserRequest(BaseModel):
 
 # 2. 회원가입 엔드포인트 추가
 @app.post("/signup")
-async def create_user(user: UserRequest):
+async def create_user(user: SignUpRequest):
     print("\n" + "="*50)
     print(f"🚀 [1단계] 안드로이드에서 요청 도착!")
     print(f"   데이터: {user}")
@@ -104,6 +110,9 @@ async def create_user(user: UserRequest):
             connection.close()
             print("🚪 [5단계] DB 연결 종료.")
         print("="*50 + "\n")
+
+####################################################################
+
 
 #로그인 구현
 class LoginRequest(BaseModel):

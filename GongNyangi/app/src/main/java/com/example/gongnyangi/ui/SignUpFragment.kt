@@ -10,8 +10,8 @@ import android.widget.*
 import androidx.navigation.fragment.findNavController
 import com.example.gongnyangi.R
 import com.example.gongnyangi.network.RetrofitClient
-import com.example.gongnyangi.network.UserRequest
-import com.example.gongnyangi.network.ServerResponse
+import com.example.gongnyangi.network.apidata.ServerResponse
+import com.example.gongnyangi.network.apidata.SignUpRequest
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -73,17 +73,17 @@ class SignUpFragment : Fragment() {
             }
 
             // 2. 서버 전송용 데이터 생성 (UserRequest는 ApiService.kt에 정의된 것 사용)
-            val requestData = UserRequest(
-                user_name = userName,
-                grade_level = grade,
+            val requestData = SignUpRequest(
+                userName = userName,
+                gradeLevel = grade,
                 phone = phone,
-                school_level = "중학교", // 현재는 고정값, 필요시 수정 가능
-                user_score = 0
+                schoolLevel = "중학교", // 현재는 고정값, 필요시 수정 가능
+                userScore = 0
             )
 
             // 3. 서버 통신 시작
             Log.d("SignUp", "서버 통신 시도 중...")
-            RetrofitClient.service.signUp(requestData).enqueue(object : Callback<ServerResponse> {
+            RetrofitClient.api.signUp(requestData).enqueue(object : Callback<ServerResponse> {
                 override fun onResponse(call: Call<ServerResponse>, response: Response<ServerResponse>) {
                     if (response.isSuccessful) {
                         val body = response.body()
