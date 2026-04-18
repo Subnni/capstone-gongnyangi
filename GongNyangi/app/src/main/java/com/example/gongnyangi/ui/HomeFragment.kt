@@ -2,7 +2,10 @@ package com.example.gongnyangi.ui
 
 import android.content.Context
 import android.content.Intent
+import android.health.connect.datatypes.units.Length
+import android.media.Image
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +13,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.gongnyangi.R
+import com.example.gongnyangi.network.RetrofitClient
+import com.example.gongnyangi.network.apidata.HomeRequest
+import com.example.gongnyangi.network.apidata.RoadMap
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
@@ -44,6 +53,8 @@ class HomeFragment : Fragment() {
         StatusBarUtils.addStatusBarPadding(view)
 
         //UI 연결
+        userNameTextView = view.findViewById(R.id.userNameTextView)
+        userScoreTextView = view.findViewById(R.id.userScoreTextView)
         gotoCreateBook = view.findViewById(R.id.gotoCreateBook)
         gotoMyPageLL = view.findViewById(R.id.gotoMyPageLL)
         gotoSetting = view.findViewById(R.id.gotoSetting)
@@ -64,27 +75,64 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireContext(), CreateBookActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun loadData(){
+        var sharedPref = requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+        var userId = sharedPref.getInt("USER_ID", 0)
+
+        lifecycleScope.launch {
+            try {
+                val response = RetrofitClient.api.loadUserData(HomeRequest(userId))
+                if (response.isSuccessful) {
+                    val userName = response.body()?.userName ?: "-"
+                    val userScore = response.body()?.userScore ?: 0
+                    val roadmap = response.body()?.roadmap ?: emptyList()
+
+                    if(!userName.isNullOrBlank()){
+                        userNameTextView.setText(userName)
+                        userScoreTextView.setText(userScore.toString())
+                    }
+                    loadRoadMap(roadmap)
+
+                } else {
+                    Toast.makeText(requireContext(), "데이터를 가져오지 못했습니다. 잠시 후 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
+                    val roadmap = response.body()?.roadmap ?: emptyList()
+                    loadRoadMap(roadmap)
+                }
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "오류 발생. 잠시 후 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
+            }
+        }
 
 
-        //DB값 담을 변수
+    }
+
+    private fun loadRoadMap(roadmap : List<RoadMap>){
+        bookListLayout.removeAllViews()
+        //로드맵 값 담을 변수
         //임의 생성
-        var totalRoadMap : Int = 0
+        var totalRoadMap : Int = roadmap.size
         if(totalRoadMap>0){
             //필요없는 뷰 invisible
             ghostImageView.setVisibility(View.INVISIBLE)
             ghostTextView.setVisibility(View.INVISIBLE)
 
             //로드맵 리스트 생성
-            for(i in 1..totalRoadMap){
+            for(i in 0 until totalRoadMap){
                 val roadmapItemView = layoutInflater.inflate(R.layout.fragment_home_roadmap_item, bookListLayout, false)
-
                 val titleTextView = roadmapItemView.findViewById<TextView>(R.id.titleTextView)
                 val dateTextView = roadmapItemView.findViewById<TextView>(R.id.dateTextView)
                 val popupTextView = roadmapItemView.findViewById<TextView>(R.id.popupTextView)
+                val coverImage = roadmapItemView.findViewById<ImageView>(R.id.coverImage)
 
-                //임시 코드
-                titleTextView.setText("book{$i}가나다라마바사라아자")
-                dateTextView.setText("2026.04.1{$i}")
+                titleTextView.text = roadmap[i].roadmapTitle
+                dateTextView.text = roadmap[i].roadMapCreatedAt
+                when(roadmap[i].coverImageIndex){
+                    "ghost" -> coverImage.setBackgroundResource(R.drawable.ghost)
+                    "heart" -> coverImage.setBackgroundResource(R.drawable.h2h)
+                    "cat" -> coverImage.setBackgroundResource(R.drawable.gentle)
+                }
 
                 //리스너 연결
                 popupTextView.setOnClickListener { v ->
@@ -96,7 +144,9 @@ class HomeFragment : Fragment() {
                     popup.setOnMenuItemClickListener { item ->
                         when(item.itemId){
                             R.id.item_setting -> {
-                                val bottomSheet_select = BottomSheetDialogFragment_CategorySelect()
+                                val categoryId = roadmap[i].categoryId
+                                val categoryName = roadmap[i].categoryName
+                                val bottomSheet_select = BottomSheetDialogFragment_CategorySelect.newInstance(categoryId, categoryName)
 
                                 bottomSheet_select.onCompleteSelectListener = {
                                     bottomSheet_select.dismiss()
@@ -118,12 +168,12 @@ class HomeFragment : Fragment() {
                                 true
                             }
                             R.id.item_modify -> {
-                                val bottomSheet_bookSetting = BottomSheetDialogFragment_BookSetting()
+                                val bottomSheet_bookSetting = BottomSheetDialogFragment_BookSetting.newInstance(roadmap[i].roadmapTitle)
 
                                 bottomSheet_bookSetting.onCompleteSelectListener = {
                                     bottomSheet_bookSetting.dismiss()
                                 }
-                                bottomSheet_bookSetting.show(parentFragmentManager, "CategorySelectSheet")
+                                bottomSheet_bookSetting.show(parentFragmentManager, "BookSettingSheet")
                                 true
                             }
                             R.id.item_delete -> {
@@ -137,30 +187,23 @@ class HomeFragment : Fragment() {
 
                 //선택된 책을 isSelected로 변경
                 roadmapItemView.setOnClickListener { clickedView ->
+
+                    //뷰의 현재 상태 저장
+                    var wasSelected = clickedView.isSelected
+
                     //부모 안의 모든 자식 뷰를 isSelected=false
                     for (j in 0 until bookListLayout.childCount) {
                         bookListLayout.getChildAt(j).isSelected = false
                     }
-                    clickedView.isSelected = true
+
+                    if(!wasSelected) clickedView.isSelected = true
+                    else clickedView.isSelected = false
                 }
                 bookListLayout.addView(roadmapItemView)
             }
         }
         else{
             roadmapBox.setVisibility(View.INVISIBLE)
-        }
-
-    }
-
-    private fun loadData(){
-        var sharedPref = requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-        var userId = sharedPref.getInt("USER_ID", 0)
-        var userName = sharedPref.getString("USER_NAME", null)
-
-        if(userId !=0 && !(userName.isNullOrBlank())){
-            userNameTextView.setText(userName)
-            userScoreTextView.setText(userId)
-
         }
     }
 

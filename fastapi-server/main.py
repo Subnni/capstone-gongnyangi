@@ -3,17 +3,27 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Optional
 import pymysql
+from fastapi import HTTPException
 
 #FastAPI 객체 만들어 app에 담기
 app = FastAPI()
 
 # 2. DB 연결 설정 
-def get_db_connection():
+def get_db_connection(db):
+    
+    db_name = ""
+    if db == "user": 
+        db_name = 'db_user_info'
+    elif db == "tbwb":
+        db_name = 'db_user_tbwb'
+    elif db == "bank":
+        db_name = 'db_question_bank' 
+    
     return pymysql.connect(
         host='localhost',
         user='root',      # phpMyAdmin 기본 사용자
         password='',      # 본인의 DB 비밀번호 (없으면 빈칸)
-        db='db_user_info',  # 데이터베이스 이름
+        db=db_name,  # 데이터베이스 이름
         charset='utf8mb4',
         cursorclass=pymysql.cursors.DictCursor
     )
@@ -70,7 +80,7 @@ async def create_user(user: SignUpRequest):
     connection = None # 초기화
     try:
         print(f"📂 [2단계] DB 연결 시도 중...")
-        connection = get_db_connection()
+        connection = get_db_connection("user")
         print(f"   ✅ DB 연결 성공!")
         
         with connection.cursor() as cursor:
@@ -103,7 +113,7 @@ async def create_user(user: SignUpRequest):
             connection.rollback()
             print("   ↪️ 에러로 인해 DB 작업이 롤백되었습니다.")
             
-        return {"success": False, "message": f"서버 오류: {str(e)}"}
+        return {"success": False, "message": "이미 가입된 번호입니다."}
     
     finally:
         if connection:
@@ -121,7 +131,7 @@ class LoginRequest(BaseModel):
 @app.post("/login")
 async def login(data: LoginRequest):
     print(f"🔍 로그인 시도: {data.phone}")
-    connection = get_db_connection()
+    connection = get_db_connection("user")
     try:
         with connection.cursor() as cursor:
             # DB에서 해당 전화번호를 가진 유저가 있는지 확인
@@ -133,8 +143,7 @@ async def login(data: LoginRequest):
             print(f"✅ 로그인 성공: {user['user_name']}님")
             return {
                 "success": True, 
-                "message": "로그인 성공!", 
-                "user_name": user['user_name']
+                "user_id" : user['user_id']
             }
         else:
             print("❌ 로그인 실패: 등록되지 않은 번호")
@@ -145,3 +154,58 @@ async def login(data: LoginRequest):
         return {"success": False, "message": "서버 오류 발생"}
     finally:
         connection.close()
+
+
+#############################################################
+
+#홈 화면
+class HomeRequest(BaseModel):
+    user_id: int
+
+@app.post("/loadUserData")
+async def loadUserData(data: HomeRequest):
+    conn_user = get_db_connection("user")
+    conn_tbwb = get_db_connection("tbwb")
+    try:
+        with conn_user.cursor() as cursor:
+            sql = "SELECT * FROM user WHERE user_id = %s"
+            cursor.execute(sql, (data.user_id,))
+            user = cursor.fetchone()
+        with conn_tbwb.cursor() as cursor:
+            sql = "SELECT * FROM roadmap LEFT JOIN category ON roadmap.category_id = category.category_id WHERE roadmap.user_id = %s"
+            cursor.execute(sql, (data.user_id,))
+            roadmap = cursor.fetchall()
+
+            #roadmap
+            roadmap_list = []
+
+            for r in roadmap:
+                roadmap_list.append({
+                    "category_id" : r["category_id"] or 0,
+                    "category_name" : r["category_name"] or "전체",
+                    "roadmap_id" : r["roadmap_id"],
+                    "roadmap_title" : r["roadmap_title"] or "-",
+                    "cover_image_index" : r["cover_image_index"],
+                    "rm_created_at" : r["rm_created_at"]
+                })
+                
+
+        if user:
+            #response
+            print(f"이름 : { user['user_name'] }, 유저 정보 불러오기 성공")
+            return {
+                "user_name" : user['user_name'],
+                "user_score" : user['user_score'],
+                "roadmap" : roadmap_list
+            }
+        else:
+            print("유저 정보 불러오기 실패")
+            raise HTTPException(status_code=404, detail="유저 없음") #404 = 백지를 내도 백점 
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"서버 에러: {str(e)}")
+        raise HTTPException(status_code=500, detail="서버 에러") #500 = 서버 문제
+    finally:
+        conn_user.close()
+        conn_tbwb.close()

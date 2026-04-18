@@ -7,6 +7,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.gongnyangi.R
@@ -15,9 +16,23 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class BottomSheetDialogFragment_BookSetting : BottomSheetDialogFragment() {
 
+    //이름 변수
+    private var bookName : String =""
+    //리스너
     var onCompleteSelectListener: (() -> Unit)? = null
     private lateinit var selectBtn : TextView
     private lateinit var cancelBtn : ImageView
+    private lateinit var editBookName : EditText
+    //static함수(객체 생성 시 데이터 담는 역할
+    companion object {
+        fun newInstance(bName : String) : BottomSheetDialogFragment_BookSetting {
+            val fragment = BottomSheetDialogFragment_BookSetting()
+            val args = Bundle()
+            args.putString("NAME", bName)
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +46,10 @@ class BottomSheetDialogFragment_BookSetting : BottomSheetDialogFragment() {
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
         selectBtn = view.findViewById(R.id.selectBtn)
         cancelBtn = view.findViewById(R.id.cancelBtn)
+        editBookName = view.findViewById(R.id.editBookName)
+
+        val bookName = arguments?.getString("NAME") ?: ""
+        editBookName.setText(bookName)
 
         selectBtn.setOnClickListener {
             //부모 프래그먼트가 정의한 동작 실행

@@ -1,15 +1,19 @@
 package com.example.gongnyangi.network.apidata
 
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface ApiService {
     @POST("signup")
-    fun signUp(@Body user: SignUpRequest): Call<ServerResponse>
+    fun signUp(@Body body: SignUpRequest): Call<ServerResponse>
 
     @POST("login")
-    fun login(@Body phone: LoginRequest): Call<LoginResponse>
+    fun login(@Body body: LoginRequest): Call<LoginResponse>
+
+    @POST("loadUserData")
+    suspend fun loadUserData(@Body body : HomeRequest) : Response<HomeResponse>
 }
 
 //

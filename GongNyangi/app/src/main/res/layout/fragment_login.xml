@@ -42,26 +42,31 @@ android:layout_height="match_parent">
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="13dp"
-                android:layout_height="15dp"
-                android:layout_marginStart="20dp"
+                android:layout_width="20dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="40dp"
                 android:layout_marginEnd="11dp"
                 android:background="@drawable/login_id_icon"
                 android:scaleType="fitXY" />
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:background="@drawable/login_vertical_line_icon" />
 
             <EditText
+                android:layout_marginLeft="10dp"
                 android:id="@+id/PhoneLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="전화번호 "
-                android:textColor="#536578"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:layout_width="match_parent"
+                android:layout_weight="0.8"
+                android:layout_height="24dp"
+                android:hint="전화번호"
+                android:inputType="phone"
+                android:background="@null"
+                android:textColorHint="@color/text_placeholder"
+                android:textColor="@color/text2"
+                android:fontFamily="@font/freesentation_bold"
+                android:textSize="20sp" />
         </LinearLayout>
 
 
@@ -83,8 +88,9 @@ android:layout_height="match_parent">
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:text="비밀번호 찾기 "
+                    android:fontFamily="@font/ypairingfont_regular"
                     android:textColor="#3E4650"
-                    android:textSize="15sp" />
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -96,9 +102,10 @@ android:layout_height="match_parent">
                     android:id="@+id/gotoSignUpTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/ypairingfont_regular"
                     android:text="처음 시작하기"
                     android:textColor="#3E4650"
-                    android:textSize="15sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -115,10 +122,10 @@ android:layout_height="match_parent">
 
                 <LinearLayout
                     android:id="@+id/gotoMainLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="200dp"
+                    android:layout_height="70dp"
                     android:background="@drawable/login_btn_image"
-                    android:gravity="center_horizontal"
+                    android:gravity="center"
                     android:orientation="vertical"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="6dp">
@@ -128,7 +135,7 @@ android:layout_height="match_parent">
                         android:layout_height="wrap_content"
                         android:text="로그인"
                         android:textColor="#ffffff"
-                        android:textSize="20sp" />
+                        android:textSize="24sp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

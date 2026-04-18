@@ -1,208 +1,329 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FDFDFD"
-    android:padding="24dp">
+    android:background="@color/main1"
+    android:padding="16dp">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.16" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.88" />
+
+
+    <ImageView
+        android:id="@+id/gotoLogin"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/cancel_btn_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imgTitleIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/temp_meow"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@id/gotoLogin"
+        app:tint="@color/text3" />
+
+    <TextView
+        android:id="@+id/tvTitleMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="나에 대해 알려주세요."
+        android:textColor="@color/text3"
+        android:textSize="32sp"
+
+        app:layout_constraintBottom_toBottomOf="@id/imgTitleIcon"
+        app:layout_constraintStart_toEndOf="@id/imgTitleIcon"
+        app:layout_constraintTop_toTopOf="@id/imgTitleIcon" />
+
+    <TextView
+        android:id="@+id/tvTitleSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="시작하기 전, 몇 가지 준비할 게 있어요."
+        android:textColor="@color/text2"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleMain" />
+
+
+    <TextView
+        android:id="@+id/labelName"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="이름"
+        android:gravity="end"
+        android:layout_marginEnd="15dp"
+        android:textColor="@color/text3"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/row1"
+        app:layout_constraintEnd_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toTopOf="@id/row1" />
+
+    <ImageView
+        android:id="@+id/row1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/signup_name_input_box"
+        app:layout_constraintDimensionRatio="H, 10:1"
+        app:layout_constraintEnd_toEndOf="@id/guideRight"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleSub" />
+
+    <EditText
+        android:id="@+id/editUserName"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:fontFamily="@font/freesentation_bold"
+        android:hint="이름을 입력해주세요."
+        android:paddingHorizontal="16dp"
+        android:textColorHint="@color/text_placeholder"
+        android:textColor="@color/text2"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/row1"
+        app:layout_constraintEnd_toEndOf="@id/row1"
+        app:layout_constraintStart_toStartOf="@id/row1"
+        app:layout_constraintTop_toTopOf="@id/row1" />
+
+
+    <TextView
+        android:id="@+id/labelSchool"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="학교/학년"
+        android:gravity="end"
+        android:layout_marginEnd="15dp"
+        android:textColor="@color/text3"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/row2col1"
+        app:layout_constraintEnd_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toTopOf="@id/row2col1" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:id="@+id/row2col1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintDimensionRatio="H, 6:1"
+        app:layout_constraintHorizontal_weight="0.6"
+        app:layout_constraintEnd_toStartOf="@id/row2col2"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@id/row1"
+        android:background="@drawable/signup_school_input_box"
+        android:paddingHorizontal="16dp">
 
-        <ImageView
-            android:id="@+id/gotoLogin"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@drawable/cancel_btn_image"
-            android:contentDescription="닫기" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="함께 시작해볼까요?"
-            android:textColor="#333333"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:text="시작하기 전, 준비할 게 있어요."
-            android:textColor="#888888"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-
-            android:drawablePadding="6dp"
-            android:text="이름"
-            android:textColor="#333333"
-            android:textStyle="bold" />
-
-        <LinearLayout
+        <Spinner
+            android:id="@+id/spinnerSchool"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/input_box_image"
-            android:padding="12dp">
-
-            <EditText
-                android:id="@+id/editUserName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="이름을 입력해주세요."
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-
-            android:drawablePadding="6dp"
-            android:text="비밀번호"
-            android:textColor="#333333"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/input_box_image"
-            android:padding="12dp">
-
-            <EditText
-                android:id="@+id/editPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="비밀번호를 입력해주세요."
-                android:inputType="textPassword"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-
-            android:drawablePadding="6dp"
-            android:text="고양이 이름"
-            android:textColor="#333333"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/input_box_image"
-            android:padding="12dp">
-
-            <EditText
-                android:id="@+id/editCatName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="함께 공부할 냥이의 이름을 정해주세요."
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:drawablePadding="6dp"
-            android:text="학년"
-            android:textColor="#333333"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/input_box_image"
-            android:padding="12dp">
-
-            <Spinner
-                android:id="@+id/spinnerGrade"
-                android:layout_width="match_parent"
-                android:layout_height="24dp"
-                android:background="@null" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-
-            android:drawablePadding="6dp"
-            android:text="전화번호"
-            android:textColor="#333333"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/input_box_image"
-                android:padding="12dp"
-                android:layout_marginEnd="12dp">
-
-                <EditText
-                    android:id="@+id/editPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:hint="000-0000-0000"
-                    android:inputType="phone"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_confirm_phone_image">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:text="인증번호 받기"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/gotoWelcomeLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_with_pow_image">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="다 썼어요"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
+            android:layout_height="match_parent"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown"
+            android:popupBackground="@drawable/signup_dropdown_box"
+            />
 
     </LinearLayout>
-</ScrollView>
+
+    <LinearLayout
+        android:id="@+id/row2col2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:background="@drawable/signup_grade_input_box"
+        app:layout_constraintDimensionRatio="H, 4:1"
+        app:layout_constraintHorizontal_weight="0.4"
+        app:layout_constraintEnd_toEndOf="@id/guideRight"
+        app:layout_constraintStart_toEndOf="@id/row2col1"
+        app:layout_constraintTop_toTopOf="@id/row2col1"
+        android:paddingHorizontal="16dp">
+        <Spinner
+            android:id="@+id/spinnerGrade"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown"
+            android:popupBackground="@drawable/signup_dropdown_box"
+            />
+    </LinearLayout>
+
+
+
+
+    <TextView
+        android:id="@+id/labelPhone"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="전화번호"
+        android:gravity="end"
+        android:layout_marginEnd="15dp"
+        android:textColor="@color/text3"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/row3"
+        app:layout_constraintEnd_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toTopOf="@id/row3" />
+
+    <ImageView
+        android:id="@+id/row3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/signup_phone_input_box"
+        app:layout_constraintDimensionRatio="H, 8:1"
+        app:layout_constraintHorizontal_weight="0.7"
+        app:layout_constraintEnd_toStartOf="@id/authButton"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@id/row2col1" />
+
+    <EditText
+        android:id="@+id/editPhone"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:inputType="phone"
+        android:maxLength="13"
+        android:digits="0123456789-"
+        android:hint="전화번호를 입력해주세요."
+        android:fontFamily="@font/freesentation_bold"
+        android:paddingHorizontal="16dp"
+        android:textSize="18sp"
+        android:textColorHint="@color/text_placeholder"
+        android:textColor="@color/text2"
+        app:layout_constraintBottom_toBottomOf="@id/row3"
+        app:layout_constraintEnd_toEndOf="@id/row3"
+        app:layout_constraintStart_toStartOf="@id/row3"
+        app:layout_constraintTop_toTopOf="@id/row3" />
+
+    <Button
+        android:id="@+id/authButton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@drawable/signup_btn_1"
+        android:text="인증번호 받기"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="@id/row3"
+        app:layout_constraintEnd_toEndOf="@id/guideRight"
+        app:layout_constraintTop_toTopOf="@id/row3" />
+
+
+    <ImageView
+        android:id="@+id/row4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/signup_phone_input_box"
+        app:layout_constraintDimensionRatio="H, 8:1"
+        app:layout_constraintEnd_toStartOf="@id/verifyButton"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@id/row3" />
+
+    <EditText
+        android:id="@+id/editVerifyCode"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:hint="인증번호를 입력해주세요."
+        android:textColorHint="@color/text_placeholder"
+        android:textColor="@color/text2"
+        android:visibility="invisible"
+        android:inputType="number"
+        android:fontFamily="@font/freesentation_bold"
+        android:paddingHorizontal="16dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/row4"
+        app:layout_constraintEnd_toEndOf="@id/row4"
+        app:layout_constraintStart_toStartOf="@id/row4"
+        app:layout_constraintTop_toTopOf="@id/row4" />
+
+    <Button
+        android:id="@+id/verifyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@drawable/signup_btn_1"
+        android:text="인증번호 확인"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="@id/row4"
+        app:layout_constraintEnd_toEndOf="@id/guideRight"
+        app:layout_constraintTop_toTopOf="@id/row4" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        app:layout_constraintEnd_toEndOf="@id/guideRight"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@id/row4">
+
+        <TextView
+            android:id="@+id/verifyInfoTextView"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
+            android:text="전화번호를 확인하기 위해 문자로 인증번호를 보내드렸어요!"
+            android:textAlignment="viewEnd"
+            android:textSize="14sp"
+            />
+        <TextView
+            android:id="@+id/timeInfoTextView"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="0:00"
+            android:layout_marginRight="10dp"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/text4"
+            android:textSize="14sp"
+            />
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/gotoWelcomeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/signup_btn_2"
+        android:paddingHorizontal="40dp"
+        android:text="다 썼어요"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

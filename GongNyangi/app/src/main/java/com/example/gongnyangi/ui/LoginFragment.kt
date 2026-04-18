@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.preference.PreferenceManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -53,7 +52,13 @@ class LoginFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            //임시로 주석처리
             checkLogin(phone)
+
+            //임시 코드####로그인 검사 시 주석 처리 필수##########################최종 삭제 필요
+            //val intent = Intent(requireContext(), MainActivity::class.java)
+            //startActivity(intent)
+            //activity?.finish()
         }
     }
 
@@ -83,38 +88,32 @@ class LoginFragment : Fragment() {
                     val result = response.body()
 
                     if (result != null && result.success) {
-                        val userName = result.userName ?: "사용자"
                         val userId = result.userId
-                        Toast.makeText(requireContext(), "${userName}님, 환영합니다!", Toast.LENGTH_SHORT).show()
-
-                        saveData(userId, userName)
+                        saveData(userId)
 
                         val intent = Intent(requireContext(), MainActivity::class.java)
                         intent.putExtra("user_id", userId)
-                        intent.putExtra("user_name", userName)
                         startActivity(intent)
                         activity?.finish()
                     } else {
-                        val message = result?.message ?: "로그인에 실패했습니다."
+                        val message =  "해당하는 전화번호가 없습니다."
                         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    Toast.makeText(requireContext(), "서버 응답 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "오류가 발생했습니다. 잠시 후 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                Toast.makeText(requireContext(), "서버 연결에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "오류가 발생했습니다. 잠시 후 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     //사용자 정보 저장(userId)
-    private fun saveData(userId : Int, userName : String){
+    private fun saveData(userId : Int){
         var sharedPref = requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
         var editor = sharedPref.edit()
-
         editor.putInt("USER_ID", userId).apply()
-        editor.putString("USER_NAME", userName).apply()
     }
 }

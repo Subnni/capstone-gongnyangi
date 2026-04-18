@@ -6,7 +6,7 @@
     android:background="@color/text3">
 
     <LinearLayout
-        android:id="@+id/btnClose"
+        android:id="@+id/gotoLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/gallery_header"
@@ -56,7 +56,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnClose" />
+        app:layout_constraintTop_toBottomOf="@id/gotoLogin" />
 
     <androidx.compose.ui.platform.ComposeView
         android:id="@+id/imageCarouselViewer"

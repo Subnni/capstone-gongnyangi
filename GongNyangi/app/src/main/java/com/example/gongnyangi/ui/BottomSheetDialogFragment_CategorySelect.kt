@@ -15,6 +15,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class BottomSheetDialogFragment_CategorySelect : BottomSheetDialogFragment() {
 
+    //이름 변수
+    private var categoryId : Int = -1
+    private var categoryName : String =""
     //리스너
     var onCompleteSelectListener: (() -> Unit)? = null
     var onSettingSelectListener: (() -> Unit)? = null
@@ -22,6 +25,18 @@ class BottomSheetDialogFragment_CategorySelect : BottomSheetDialogFragment() {
     private lateinit var selectBtn : LinearLayout
     private lateinit var cancelBtn : ImageView
     private lateinit var gotoCategorySettingButton : LinearLayout
+
+    //static함수(객체 생성 시 데이터 담는 역할
+    companion object {
+        fun newInstance(cId : Int, cName : String) : BottomSheetDialogFragment_CategorySelect {
+            val fragment = BottomSheetDialogFragment_CategorySelect()
+            val args = Bundle()
+            args.putInt("ID", cId)
+            args.putString("NAME", cName)
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,12 +49,15 @@ class BottomSheetDialogFragment_CategorySelect : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val categoryId = arguments?.getInt("ID") ?: 0
+        val categoryName = arguments?.getString("NAME") ?: ""
+
         selectBtn = view.findViewById(R.id.selectBtn)
         cancelBtn = view.findViewById(R.id.cancelBtn)
         gotoCategorySettingButton = view.findViewById(R.id.gotoCategorySettingButton)
 
         selectBtn.setOnClickListener {
-            onCompleteSelectListener?.invoke()            //부모 프래그먼트(BookCompleteFragment)가 정의한 동작 실행
+            onCompleteSelectListener?.invoke()//부모 프래그먼트(BookCompleteFragment)가 정의한 동작 실행
         }
         cancelBtn.setOnClickListener {
             dismiss() //닫기

@@ -29,9 +29,6 @@ class MyPageFragment : Fragment() {
 
         //(activity as? MainActivity)?.setNavVisible(false)
 
-        //상단 상태바 높이만큼 패딩 부여
-        StatusBarUtils.addStatusBarPadding(view)
-
         //UI 연결
         gotoHomeImageView = view.findViewById(R.id.gotoHomeImageView)
         popupTextView = view.findViewById(R.id.popupTextView)
